@@ -24,7 +24,7 @@ def normalizeRows(x):
 def test_normalize_rows():
 	print "Testing normalizeRows..."
 	x = normalizeRows(np.array([[3.0,4.0],[1, 2]]))
-	print x
+	#print x
 	ans = np.array([[0.6,0.8],[0.4472136,0.89442719]])
 	assert np.allclose(x, ans, rtol=1e-05, atol=1e-06)
 	print ""
@@ -54,9 +54,6 @@ def test_normalize_rows():
 #     return cost, gradIn, gradOut
 
 
-
-
-
 def getNegativeSamples(target, dataset, K):
 	""" Samples K indexes which are not the target """
 
@@ -67,7 +64,7 @@ def getNegativeSamples(target, dataset, K):
 		while newidx == target:
 			newidx = dataset.sampleTokenIdx()
 		indices[k] = newidx
-	#print indices	
+	#print target,indices	
 	return indices
 
 
@@ -90,8 +87,7 @@ def negSamplingCostAndGradient(predicted, target, outputVectors, dataset,
 	indices = [target]
 	indices.extend(getNegativeSamples(target, dataset, K))
 
-	print target,indices	
-
+	
 	### YOUR CODE HERE
 	cost=-np.log(sigmoid(np.dot(outputVectors[target],predicted)))-np.sum(np.log(sigmoid(-np.dot(outputVectors[indices[1:]],predicted))))
 	
@@ -101,32 +97,10 @@ def negSamplingCostAndGradient(predicted, target, outputVectors, dataset,
 
 	grad[target]=-(1-sigmoid(np.dot(outputVectors[target],predicted)))*predicted
 
-	grad[indices[1:]]=grad[indices[1:]]+(1-sigmoid(-np.dot(outputVectors[indices[1:]],predicted))).reshape(outputVectors[indices[1:]].shape[0],1)*predicted
-
-	# ### YOUR CODE HERE
-	# grad_sol = np.zeros(outputVectors.shape)
-	# gradPred_sol = np.zeros(predicted.shape)
-	# cost_sol = 0
-	# z = sigmoid(np.dot(outputVectors[target], predicted))
-
-	# cost_sol -= np.log(z)
-	# grad_sol[target] += predicted * (z - 1.0)
-	# gradPred_sol += outputVectors[target] * (z - 1.0)
-
-	# for k in xrange(K):
-	# 	samp = indices[k + 1]
-	# 	z = sigmoid(np.dot(outputVectors[samp], predicted))
-	# 	cost_sol -= np.log(1.0 - z)
-	# 	grad_sol[samp] += predicted * z
-	# 	gradPred_sol += outputVectors[samp] * z
+	for k in xrange(K):
+		samp=indices[k+1]
+		grad[samp]=grad[samp]+(1-sigmoid(-np.dot(outputVectors[samp],predicted)))*predicted
 	
-	# print cost.round(4)==cost_sol.round(4)
-	# print gradPred.round(4)==gradPred_sol.round(4)
-	# print grad.round(4)==grad_sol.round(4)
-
-	# print cost.round(4)==cost_sol.round(4)
-	# print gradPred.round(4)==gradPred_sol.round(4)
-	# print grad,grad_sol
 	return cost, gradPred, grad
 
 
@@ -218,7 +192,7 @@ def skipgram(currentWord, C, contextWords, tokens, inputVectors, outputVectors,
 
 	input_index=tokens[currentWord]
 	#print C
-	print input_index
+	#print input_index
 	for i in contextWords:
 		#TARGET_INDEX
 		target=tokens[i]
@@ -237,7 +211,7 @@ def skipgram(currentWord, C, contextWords, tokens, inputVectors, outputVectors,
 
 def word2vec_sgd_wrapper(word2vecModel, tokens, wordVectors, dataset, C,
 						 word2vecCostAndGradient=softmaxCostAndGradient):
-	batchsize = 1
+	batchsize = 50
 	cost = 0.0
 	grad = np.zeros(wordVectors.shape)
 	N = wordVectors.shape[0]
