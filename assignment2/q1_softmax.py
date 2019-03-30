@@ -22,8 +22,19 @@ def softmax(x):
         out: tf.Tensor with shape (n_sample, n_features). You need to construct this
                   tensor in this problem.
     """
-    
     ### YOUR CODE HERE
+
+    #max element for each row
+    max_x = tf.reduce_max(x, axis=1, keep_dims=True)
+    # substract max element from each row
+    diff_x = tf.subtract(x, max_x)
+    # take exp of each elemet
+    exp_x = tf.exp(diff_x)
+    # sum each row
+    sum_x = tf.reduce_sum(exp_x, axis=1, keep_dims=True)
+    # calculate softmaxt
+    out = tf.divide(exp_x, sum_x)
+
     ### END YOUR CODE
 
     return out
@@ -53,13 +64,19 @@ def cross_entropy_loss(y, yhat):
                     tensor in the problem.
     """
 
-    ### YOUR CODE HERE
-    sess=tf.Session()
-    y=tf.to_float(y)
-    mul=tf.multiply(y,yhat)
-    cel=tf.reduce_sum(mul)
-    out=sess.run(cel)
-    ### END YOUR CODE
+    # ### YOUR CODE HERE
+    # log of yhat
+    yhat_log = tf.log(yhat)
+
+    # multiply y and y_hat element wise
+    out = tf.multiply(tf.to_float(y), tf.to_float(yhat_log))
+
+    # row wise sum
+    out = tf.reduce_sum(out, axis=1, keepdims=True)
+
+    # sum for minibatch
+    out = -tf.reduce_sum(out)
+    # ### END YOUR CODE
 
     return out
 
@@ -101,5 +118,5 @@ def test_cross_entropy_loss_basic():
     print "Basic (non-exhaustive) cross-entropy tests pass"
 
 if __name__ == "__main__":
-    #test_softmax_basic()
+    test_softmax_basic()
     test_cross_entropy_loss_basic()
