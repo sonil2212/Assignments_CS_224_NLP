@@ -221,6 +221,7 @@ def word2vec_sgd_wrapper(word2vecModel, tokens, wordVectors, dataset, C,
 	#print outputVectors.shape
 	for i in xrange(batchsize):
 		C1 = random.randint(1,C)
+		#print C
 		#print C1
 		centerword, context = dataset.getRandomContext(C1)
 		#print centerword,context

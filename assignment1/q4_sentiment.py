@@ -48,8 +48,15 @@ def getSentenceFeatures(tokens, wordVectors, sentence):
 
     sentVector = np.zeros((wordVectors.shape[1],))
 
+    #print type(tokens)
+    #print len(sentence)
+
     ### YOUR CODE HERE
-    raise NotImplementedError
+    sentence_index=[tokens[word] for word in sentence]
+    sentVector=wordVectors[sentence_index]
+    sentVector=np.mean(sentVector,axis=0)
+    #print sentVector
+
     ### END YOUR CODE
 
     assert sentVector.shape == (wordVectors.shape[1],)
@@ -63,7 +70,7 @@ def getRegularizationValues():
     """
     values = None   # Assign a list of floats in the block below
     ### YOUR CODE HERE
-    raise NotImplementedError
+    values=[0.1,0.01,0.001,0.0001,0.000001]
     ### END YOUR CODE
     return sorted(values)
 
@@ -89,7 +96,7 @@ def chooseBestModel(results):
     bestResult = None
 
     ### YOUR CODE HERE
-    raise NotImplementedError
+    bestResult=sorted(results,key=lambda k : k['dev'],reverse=True)[0]
     ### END YOUR CODE
 
     return bestResult
@@ -154,6 +161,7 @@ def main(args):
 
     if args.yourvectors:
         _, wordVectors, _ = load_saved_params()
+
         wordVectors = np.concatenate(
             (wordVectors[:nWords,:], wordVectors[nWords:,:]),
             axis=1)
@@ -168,6 +176,7 @@ def main(args):
     trainLabels = np.zeros((nTrain,), dtype=np.int32)
     for i in xrange(nTrain):
         words, trainLabels[i] = trainset[i]
+        #print words,trainLabels[i]
         trainFeatures[i, :] = getSentenceFeatures(tokens, wordVectors, words)
 
     # Prepare dev set features

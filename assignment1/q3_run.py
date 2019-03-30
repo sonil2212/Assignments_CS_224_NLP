@@ -16,6 +16,7 @@ random.seed(314)
 dataset = StanfordSentiment()
 tokens = dataset.tokens()
 nWords = len(tokens)
+#print nWords
 
 # We are going to train 10-dimensional vectors for this assignment
 dimVectors = 10

@@ -1,2 +1,6 @@
 /papers/
 *.pyc
+/assignment1/data/
+/assignment2/data/
+assignment1/utils/datasets/
+/assignment2/utils/
