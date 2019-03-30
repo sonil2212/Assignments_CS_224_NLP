@@ -22,7 +22,7 @@ def softmax(x):
         out: tf.Tensor with shape (n_sample, n_features). You need to construct this
                   tensor in this problem.
     """
-
+    
     ### YOUR CODE HERE
     ### END YOUR CODE
 
