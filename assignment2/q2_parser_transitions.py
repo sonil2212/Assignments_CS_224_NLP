@@ -21,6 +21,9 @@ class PartialParse(object):
         self.sentence = sentence
 
         ### YOUR CODE HERE
+        self.stack=["ROOT"]
+        self.buffer=sentence
+        self.dependencies=list()
         ### END YOUR CODE
 
     def parse_step(self, transition):
@@ -32,6 +35,22 @@ class PartialParse(object):
                         transition.
         """
         ### YOUR CODE HERE
+        #shift operation
+        if transition=="S":
+            self.stack.append(self.buffer[0])
+            self.buffer=self.buffer[1:]
+
+        #left arc operation
+        elif transition=="LA":
+            self.dependencies.append((self.stack[-1],self.stack[-2]))
+            del self.stack[-2]
+
+        #right arc operation
+        else:
+            self.dependencies.append((self.stack[-2],self.stack[-1]))
+            del self.stack[-1]
+
+
         ### END YOUR CODE
 
     def parse(self, transitions):
@@ -43,32 +62,13 @@ class PartialParse(object):
             dependencies: The list of dependencies produced when parsing the sentence. Represented
                           as a list of tuples where each tuple is of the form (head, dependent)
         """
+        #print self.sentence
+        #print transitions
         for transition in transitions:
+            #print "hello"
             self.parse_step(transition)
         return self.dependencies
 
-
-def minibatch_parse(sentences, model, batch_size):
-    """Parses a list of sentences in minibatches using a model.
-
-    Args:
-        sentences: A list of sentences to be parsed (each sentence is a list of words)
-        model: The model that makes parsing decisions. It is assumed to have a function
-               model.predict(partial_parses) that takes in a list of PartialParses as input and
-               returns a list of transitions predicted for each parse. That is, after calling
-                   transitions = model.predict(partial_parses)
-               transitions[i] will be the next transition to apply to partial_parses[i].
-        batch_size: The number of PartialParses to include in each minibatch
-    Returns:
-        dependencies: A list where each element is the dependencies list for a parsed sentence.
-                      Ordering should be the same as in sentences (i.e., dependencies[i] should
-                      contain the parse for sentences[i]).
-    """
-
-    ### YOUR CODE HERE
-    ### END YOUR CODE
-
-    return dependencies
 
 
 def test_step(name, transition, stack, buf, deps,
@@ -132,6 +132,52 @@ def test_dependencies(name, deps, ex_deps):
         "{:} test resulted in dependency list {:}, expected {:}".format(name, deps, ex_deps)
 
 
+def minibatch_parse(sentences, model, batch_size):
+    """Parses a list of sentences in minibatches using a model.
+
+    Args:
+        sentences: A list of sentences to be parsed (each sentence is a list of words)
+        model: The model that makes parsing decisions. It is assumed to have a function
+               model.predict(partial_parses) that takes in a list of PartialParses as input and
+               returns a list of transitions predicted for each parse. That is, after calling
+                   transitions = model.predict(partial_parses)
+               transitions[i] will be the next transition to apply to partial_parses[i].
+        batch_size: The number of PartialParses to include in each minibatch
+    Returns:
+        dependencies: A list where each element is the dependencies list for a parsed sentence.
+                      Ordering should be the same as in sentences (i.e., dependencies[i] should
+                      contain the parse for sentences[i]).
+    """
+
+    ### YOUR CODE HERE
+    partial_parses=[PartialParse(sentence) for sentence in sentences]
+    unfinished_parses=partial_parses
+    dependencies=list()
+
+    #iterate untill all sentences not finished
+    while(len(unfinished_parses)!=0):
+
+        mini_batch_partial_parses=unfinished_parses[:batch_size]
+
+        #iterate untill mimibatch not completed
+        while(len(mini_batch_partial_parses))>0:
+            transtions=model.predict(mini_batch_partial_parses)
+
+            #apply transition for each sentence in mini batch
+            [mini_batch_partial_parses[i].parse_step(transtions[i]) for i in range(len(transtions))]
+
+            #remove completely parsed sentence
+            mini_batch_partial_parses=[temp for temp in mini_batch_partial_parses
+                                       if len(temp.buffer)>0 or len(temp.stack)>1]
+
+        unfinished_parses=unfinished_parses[batch_size:]
+
+    for obj in partial_parses:
+        dependencies.append(obj.dependencies)
+
+    return dependencies
+
+
 def test_minibatch_parse():
     """Simple tests for the minibatch_parse function
     Warning: these are not exhaustive
@@ -140,18 +186,20 @@ def test_minibatch_parse():
                  ["right", "arcs", "only", "again"],
                  ["left", "arcs", "only"],
                  ["left", "arcs", "only", "again"]]
-    deps = minibatch_parse(sentences, DummyModel(), 2)
+    #sentences=[["right", "arcs", "only"]]
+    deps = minibatch_parse(sentences, DummyModel(), 1)
+    #print deps
     test_dependencies("minibatch_parse", deps[0],
                       (('ROOT', 'right'), ('arcs', 'only'), ('right', 'arcs')))
     test_dependencies("minibatch_parse", deps[1],
-                      (('ROOT', 'right'), ('arcs', 'only'), ('only', 'again'), ('right', 'arcs')))
+                    (('ROOT', 'right'), ('arcs', 'only'), ('only', 'again'), ('right', 'arcs')))
     test_dependencies("minibatch_parse", deps[2],
-                      (('only', 'ROOT'), ('only', 'arcs'), ('only', 'left')))
+                   (('only', 'ROOT'), ('only', 'arcs'), ('only', 'left')))
     test_dependencies("minibatch_parse", deps[3],
-                      (('again', 'ROOT'), ('again', 'arcs'), ('again', 'left'), ('again', 'only')))
+                     (('again', 'ROOT'), ('again', 'arcs'), ('again', 'left'), ('again', 'only')))
     print "minibatch_parse test passed!"
 
 if __name__ == '__main__':
-    test_parse_step()
-    test_parse()
+    #test_parse_step()
+    #test_parse()
     test_minibatch_parse()
