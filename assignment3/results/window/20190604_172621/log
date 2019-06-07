@@ -1,0 +1,20 @@
+2019-06-04 17:26:23,347:INFO: Building model...
+2019-06-04 17:26:23,350:WARNING: From /home/sonil/Documents/learning/nlp deep learning/cs_224/venv/local/lib/python2.7/site-packages/tensorflow/python/ops/embedding_ops.py:132: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-06-04 17:26:23,630:WARNING: From q1_window.py:246: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+2019-06-04 17:26:23,641:WARNING: From q1_window.py:271: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2019-06-04 17:26:23,642:WARNING: From q1_window.py:273: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+2019-06-04 17:26:23,733:INFO: took 0.39 seconds
+2019-06-04 17:26:24,495:INFO: Epoch 1 out of 1

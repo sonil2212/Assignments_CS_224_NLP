@@ -1,0 +1,7 @@
+2019-06-04 17:01:55,435:INFO: Building model...
+2019-06-04 17:01:55,438:WARNING: From /home/sonil/Documents/learning/nlp deep learning/cs_224/venv/local/lib/python2.7/site-packages/tensorflow/python/ops/embedding_ops.py:132: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-06-04 17:01:55,721:WARNING: From q1_window.py:239: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.

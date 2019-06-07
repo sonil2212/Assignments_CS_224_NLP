@@ -1,0 +1,42 @@
+2019-06-04 17:33:04,849:INFO: Building model...
+2019-06-04 17:33:04,852:WARNING: From /home/sonil/Documents/learning/nlp deep learning/cs_224/venv/local/lib/python2.7/site-packages/tensorflow/python/ops/embedding_ops.py:132: colocate_with (from tensorflow.python.framework.ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Colocations handled automatically by placer.
+2019-06-04 17:33:05,132:WARNING: From q1_window.py:248: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+2019-06-04 17:33:05,142:WARNING: From q1_window.py:273: to_float (from tensorflow.python.ops.math_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.cast instead.
+2019-06-04 17:33:05,144:WARNING: From q1_window.py:275: softmax_cross_entropy_with_logits (from tensorflow.python.ops.nn_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+
+Future major versions of TensorFlow will allow gradients to flow
+into the labels input on backprop by default.
+
+See `tf.nn.softmax_cross_entropy_with_logits_v2`.
+
+2019-06-04 17:33:05,234:INFO: took 0.38 seconds
+2019-06-04 17:33:05,991:INFO: Epoch 1 out of 1
+2019-06-04 17:33:07,343:INFO: Evaluating on development data
+2019-06-04 17:33:09,708:DEBUG: Token-level confusion matrix:
+go\gu   	PER     	ORG     	LOC     	MISC    	O       
+PER     	171.00  	150.00  	116.00  	27.00   	2685.00 
+ORG     	67.00   	102.00  	98.00   	19.00   	1806.00 
+LOC     	91.00   	132.00  	92.00   	9.00    	1770.00 
+MISC    	43.00   	68.00   	32.00   	14.00   	1111.00 
+O       	1721.00 	1982.00 	1451.00 	235.00  	37370.00
+
+2019-06-04 17:33:09,708:DEBUG: Token-level scores:
+label	acc  	prec 	rec  	f1   
+PER  	0.90 	0.08 	0.05 	0.07 
+ORG  	0.92 	0.04 	0.05 	0.05 
+LOC  	0.93 	0.05 	0.04 	0.05 
+MISC 	0.97 	0.05 	0.01 	0.02 
+O    	0.75 	0.84 	0.87 	0.85 
+micro	0.89 	0.73 	0.73 	0.73 
+macro	0.89 	0.21 	0.21 	0.21 
+not-O	0.93 	0.06 	0.04 	0.05 
+
+2019-06-04 17:33:09,708:INFO: Entity level P/R/F1: 0.03/0.03/0.03
+2019-06-04 17:33:09,709:INFO: New best score! Saving model in results/window/20190604_173302/model.weights
