@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="95d40086-2938-4a75-939a-cee667d12537" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../assignment2/q2_initialization.py" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/q2_initialization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assignment2/q2_parser_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/q2_parser_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../assignment2/test.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../assignment2/test.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ner_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/ner_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/q2_rnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/q2_rnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/q2_rnn_cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/q2_rnn_cell.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/q3_gru_cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/q3_gru_cell.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,55 +17,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/q1_window.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/q2_rnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="545">
-              <caret line="529" lean-forward="true" selection-start-line="529" selection-end-line="529" />
+            <state relative-caret-position="5880">
+              <caret line="297" column="38" selection-start-line="297" selection-start-column="38" selection-end-line="297" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/wordVectors.txt">
-          <provider selected="true" editor-type-id="LargeFileEditor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vocab.txt">
+        <entry file="file://$PROJECT_DIR$/q2_rnn_cell.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-21400" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data_util.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="132" column="19" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="19" />
+            <state relative-caret-position="293">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+              <folding>
+                <element signature="e#93#131#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/util.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="407" column="4" selection-start-line="407" selection-start-column="4" selection-end-line="407" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model.py">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ner_model.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/q3_gru_cell.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="326">
+              <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -74,8 +59,11 @@
       <find>tf</find>
       <find>load_word_vector_mapping</find>
       <find>load_embeddings</find>
-      <find>do_train</find>
       <find>vocab_fstream</find>
+      <find>do_train</find>
+      <find>property</find>
+      <find>test_rnn_cell</find>
+      <find>config</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -85,6 +73,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/q1_window.py" />
+        <option value="$PROJECT_DIR$/q2_rnn.py" />
+        <option value="$PROJECT_DIR$/q2_rnn_cell.py" />
+        <option value="$PROJECT_DIR$/q3_gru_cell.py" />
       </list>
     </option>
   </component>
@@ -118,16 +109,14 @@
               <item name="assignment3" type="b2602c69:ProjectViewProjectNode" />
               <item name="assignment3" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="assignment3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="assignment3" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
     </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -158,7 +147,7 @@
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24960877" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24960877" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -178,6 +167,19 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/data/wordVectors.txt">
+      <provider selected="true" editor-type-id="LargeFileEditor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vocab.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2625">
+          <caret line="132" column="19" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -187,21 +189,6 @@
           <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="132" column="19" selection-start-line="132" selection-start-column="4" selection-end-line="132" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/vocab.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21400" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/wordVectors.txt">
-      <provider selected="true" editor-type-id="LargeFileEditor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/util.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -213,7 +200,34 @@
     <entry file="file://$PROJECT_DIR$/q1_window.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="545">
-          <caret line="529" lean-forward="true" selection-start-line="529" selection-end-line="529" />
+          <caret line="529" selection-start-line="529" selection-end-line="529" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q2_rnn.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5880">
+          <caret line="297" column="38" selection-start-line="297" selection-start-column="38" selection-end-line="297" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q2_rnn_cell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+          <folding>
+            <element signature="e#93#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/q3_gru_cell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="67" column="80" selection-start-line="67" selection-start-column="80" selection-end-line="67" selection-end-column="80" />
         </state>
       </provider>
     </entry>

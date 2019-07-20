@@ -95,7 +95,6 @@ class NERModel(Model):
     def fit(self, sess, saver, train_examples_raw, dev_set_raw):
         best_score = 0.
 
-        #print len(train_examples_raw)
         train_examples = self.preprocess_sequence_data(train_examples_raw)
 
         dev_set = self.preprocess_sequence_data(dev_set_raw)
@@ -113,8 +112,9 @@ class NERModel(Model):
                         # [features, labels]. This makes expanding tuples into arguments (* operator) handy
 
             ### YOUR CODE HERE (2-3 lines)
-            for feature, labels in util.minibatches(train_examples, self.config.batch_size):
-                loss=self.train_on_batch(sess, feature, labels)
+            #print util.minibatches(train_examples, self.config.batch_size).next()
+            for i, batch in enumerate(util.minibatches(train_examples, self.config.batch_size)):
+                loss=self.train_on_batch(sess, *batch)
             ### END YOUR CODE
 
             logger.info("Evaluating on development data")

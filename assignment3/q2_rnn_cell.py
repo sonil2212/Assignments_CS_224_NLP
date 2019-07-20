@@ -51,23 +51,34 @@ class RNNCell(tf.nn.rnn_cell.RNNCell):
               initialization as before.
         Args:
             inputs: is the input vector of size [None, self.input_size]
-            state: is the previous state vector of size [None, self.state_size]
+            state: is the previous state vec`tor of size [None, self.state_size]
             scope: is the name of the scope to be used when defining the variables inside.
         Returns:
             a pair of the output vector and the new state vector.
         """
         scope = scope or type(self).__name__
-
         # It's always a good idea to scope variables in functions lest they
         # be defined elsewhere!
+        ### YOUR CODE HERE (~6-10 lines)
         with tf.variable_scope(scope):
-            ### YOUR CODE HERE (~6-10 lines)
-            pass
+            W_x=tf.get_variable("W_x",shape=(self.input_size,self.state_size),
+                                initializer=tf.contrib.layers.xavier_initializer())
+            W_h=tf.get_variable("W_h",shape=(self.state_size,self.state_size),
+                                initializer=tf.contrib.layers.xavier_initializer())
+            b=tf.get_variable("b",initializer=tf.zeros(self.state_size,tf.float32))
+
+            inputs=tf.to_float(inputs)
+            temp1=tf.matmul(inputs,W_x)
+            temp2=tf.matmul(state,W_h)
+
+            output=tf.math.sigmoid(temp1+temp2+b)
+            new_state=output
             ### END YOUR CODE ###
+        tf.get_variable_scope().reuse_variables()
         # For an RNN , the output and state are the same (N.B. this
         # isn't true for an LSTM, though we aren't using one of those in
         # our assignment)
-        output = new_state
+
         return output, new_state
 
 def test_rnn_cell():
@@ -91,6 +102,7 @@ def test_rnn_cell():
                 x = np.array([
                     [0.4, 0.5, 0.6],
                     [0.3, -0.2, -0.1]], dtype=np.float32)
+
                 h = np.array([
                     [0.2, 0.5],
                     [-0.3, -0.3]], dtype=np.float32)
