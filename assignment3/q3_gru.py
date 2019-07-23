@@ -87,6 +87,9 @@ class SequencePredictor(Model):
 
         x = self.inputs_placeholder
         ### YOUR CODE HERE (~2-3 lines)
+        preds=tf.nn.dynamic_rnn(cell,inputs=x,dtype=tf.float32)[1]
+        preds=tf.nn.sigmoid(preds)
+
         ### END YOUR CODE
 
         return preds #state # preds
@@ -108,7 +111,8 @@ class SequencePredictor(Model):
         y = self.labels_placeholder
 
         ### YOUR CODE HERE (~1-2 lines)
-
+        loss=tf.nn.l2_loss(preds-y)
+        loss=tf.reduce_mean(loss)
         ### END YOUR CODE
 
         return loss
@@ -122,7 +126,7 @@ class SequencePredictor(Model):
 
         TODO:
             - Get the gradients for the loss from optimizer using
-              optimizer.compute_gradients.
+                  optimizer.compute_gradients.
             - if self.clip_gradients is true, clip the global norm of
               the gradients using tf.clip_by_global_norm to self.config.max_grad_norm
             - Compute the resultant global norm of the gradients using
@@ -138,14 +142,25 @@ class SequencePredictor(Model):
         Returns:
             train_op: The Op for training.
         """
-
-        optimizer = tf.train.GradientDescentOptimizer(learning_rate=self.config.lr)
-
         ### YOUR CODE HERE (~6-10 lines)
 
         # - Remember to clip gradients only if self.config.clip_gradients
         # is True.
         # - Remember to set self.grad_norm
+
+        optimizer = tf.train.GradientDescentOptimizer(learning_rate=self.config.lr)
+        grads_and_vars=optimizer.compute_gradients(loss)
+
+        grads = [temp[0] for temp in grads_and_vars]
+        vars= [temp[1] for temp in grads_and_vars]
+
+        if self.config.clip_gradients:
+            gradients,global_norm = tf.clip_by_global_norm(grads, self.config.max_grad_norm)
+
+        grads_and_vars=[(grads[i],vars[i]) for i in range(len(grads))]
+
+        self.grad_norm=tf.global_norm(grads)
+        train_op=optimizer.apply_gradients(grads_and_vars)
 
         ### END YOUR CODE
 
@@ -161,6 +176,7 @@ class SequencePredictor(Model):
         return loss, grad_norm
 
     def run_epoch(self, sess, train):
+        #print train
         prog = Progbar(target=1 + int(len(train) / self.config.batch_size))
         losses, grad_norms = [], []
         for i, batch in enumerate(minibatches(train, self.config.batch_size)):
@@ -305,6 +321,7 @@ def do_sequence_prediction(args):
     # submitting.
     np.random.seed(41)
     data = generate_sequence(args.max_length)
+    print data[0]
 
     with tf.Graph().as_default():
         # You can change this around, but make sure to reset it to 41 when

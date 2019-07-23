@@ -65,7 +65,7 @@ class RNNCell(tf.nn.rnn_cell.RNNCell):
                                 initializer=tf.contrib.layers.xavier_initializer())
             W_h=tf.get_variable("W_h",shape=(self.state_size,self.state_size),
                                 initializer=tf.contrib.layers.xavier_initializer())
-            b=tf.get_variable("b",initializer=tf.zeros(self.state_size,tf.float32))
+            b=tf.get_variable("b",shape=(self.state_size,),initializer=tf.contrib.layers.xavier_initializer())
 
             inputs=tf.to_float(inputs)
             temp1=tf.matmul(inputs,W_x)
