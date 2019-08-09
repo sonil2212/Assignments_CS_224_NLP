@@ -4,4 +4,9 @@
 assignment1/utils/datasets/
 /assignment2/utils/
 /venv/
-/.idea
+/.idea/*
+/papers/
+/assignment_4/
+/screenshots/
+assignment1/2.png
+*.txt
