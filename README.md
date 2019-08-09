@@ -1,2 +1,4 @@
-# cs_224
-assignments of cs_224N (2016) NLP course 
+# CS224N
+assignments of Standford CS224N (2016) NLP course 
+
+
