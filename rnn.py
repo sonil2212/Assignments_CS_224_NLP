@@ -19,6 +19,9 @@ def softmax(x):
     return np.exp(x) / np.sum(np.exp(x), axis=0)
 
 def create_vocab_for_input_text(input_text,vocab_size=50):
+    """
+    create dict for input text file
+    """
     vocab=defaultdict(int)
     f=open(input_text)
 
