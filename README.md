@@ -3,7 +3,7 @@ Course Name : http://web.stanford.edu/class/cs224n/index.html
 
 Instruted By : Prof Chris Manning and Richard Socher of Stanford University 
 
-Topics Covered : Word Vectors, Language Models RNN, LSTM and GRU, Attention models etc
+Topics Covered : Word Vectors, Language Models RNN, LSTM and GRU, Attention models, Transformer models like BERT etc
 
 AI Framework : Tensorflow
 
