@@ -9,4 +9,4 @@ AI Framework : Tensorflow
 
 
 
-* Motivated by these leactures I tried to implement RNN (**rnn.py**) in pytorch without using any AI framework. Purpose of this excercise is to understand and implement the underlying Math, used for gradient and thus the derivative calculation. * 
+### Motivated by these leactures I tried to implement RNN (**rnn.py**) in pytorch without using any AI framework. Purpose of this excercise is to understand and implement the underlying Math, used for gradient and thus the derivative calculation.
